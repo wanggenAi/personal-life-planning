@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "target_communities": 20,
+  "boundary_policy": "行政区及片区仅用来安排搜索，不证明三环内。南区环外仅限用户允许的补充方向，碧水湾单列。",
+  "template_evidence": "2026-09-27贝壳公开列表的地区链接，以及customFilter公开data-url：ba{min}ea{max}bp0ep50。",
+  "scopes": [
+    {"name": "泉山区总检", "region": "泉山", "url": "https://xz.ke.com/ershoufang/quanshanqu/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "鼓楼区总检", "region": "鼓楼", "url": "https://xz.ke.com/ershoufang/gulouqu/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "云龙区总检", "region": "云龙", "url": "https://xz.ke.com/ershoufang/yunlongqu/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "黄山垅片区", "region": "云龙", "url": "https://xz.ke.com/ershoufang/huangshanlong/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "楚王陵片区", "region": "云龙", "url": "https://xz.ke.com/ershoufang/chuwangling/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "天桥东片区", "region": "云龙", "url": "https://xz.ke.com/ershoufang/tianqiaodong/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "西苑片区", "region": "泉山", "url": "https://xz.ke.com/ershoufang/xiyuan1/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "湖滨片区", "region": "泉山", "url": "https://xz.ke.com/ershoufang/hubin/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "奎园片区", "region": "泉山", "url": "https://xz.ke.com/ershoufang/kuiyuan/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "翟山片区", "region": "泉山", "url": "https://xz.ke.com/ershoufang/zhaishan/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "老矿大片区", "region": "泉山", "url": "https://xz.ke.com/ershoufang/laokuangda/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "民主北路片区", "region": "鼓楼", "url": "https://xz.ke.com/ershoufang/minzhubeilu/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "坝子街片区", "region": "鼓楼", "url": "https://xz.ke.com/ershoufang/bazijie/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "祥和片区", "region": "鼓楼", "url": "https://xz.ke.com/ershoufang/xianghe2/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "经开区总检", "region": "经开", "url": "https://xz.ke.com/ershoufang/xuzhoujingjijishukaifaqu/ba40ea60bp0ep50", "scope": "primary_boundary_pending"},
+    {"name": "铜山区近市区检索", "region": "南区补充", "url": "https://xz.ke.com/ershoufang/tongshanqu/ba40ea60bp0ep50", "scope": "south_extension_boundary_pending"},
+    {"name": "铜山万达片区补充", "region": "南区补充", "url": "https://xz.ke.com/ershoufang/tongshanwanda/ba40ea60bp0ep50", "scope": "south_extension_boundary_pending"},
+    {"name": "碧水湾定向检索", "region": "南区补充", "url": "https://xz.ke.com/ershoufang/ba40ea60bp0ep50rs%E7%A2%A7%E6%B0%B4%E6%B9%BE/", "name_filter": "碧水湾", "scope": "south_extension_boundary_pending"}
+  ]
+}

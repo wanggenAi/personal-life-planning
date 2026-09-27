@@ -110,7 +110,7 @@ class DiscoveryTests(unittest.TestCase):
             self.assertEqual(len(calls), 1)
             self.assertEqual(result['access_log'][1]['status'], 'skipped')
             self.assertEqual(result['properties'], [])
-            self.assertIn('缺10套', args.report.read_text())
+            self.assertIn('缺10个', args.report.read_text())
             self.assertTrue((args.output / 'latest.json').exists())
 
     def test_deduplicate_and_collect_real_fields_only(self):
@@ -129,7 +129,7 @@ class DiscoveryTests(unittest.TestCase):
             self.assertEqual(len(result['properties']), 1)
             report = render_report(result)
             self.assertIn('未知', report)
-            self.assertIn('三环内及登记产权均核验的房源：**0套**', report)
+            self.assertIn('地理范围初核通过：**0套**', report)
             snapshots = list((args.output / 'runs').glob('*.json'))
             self.assertEqual(len(snapshots), 1)
             self.assertEqual(json.loads(snapshots[0].read_text())['target'], 10)

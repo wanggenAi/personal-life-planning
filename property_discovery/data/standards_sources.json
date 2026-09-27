@@ -1,0 +1,19 @@
+{
+  "checked_on": "2026-09-27",
+  "scope": "官方可读公告、PDF和目录；不是房源性能证明，不保证以后版本不改变",
+  "official_documents": [
+    {"code": "GB 55038-2025", "source": "https://www.gov.cn/zhengce/zhengceku/202504/content_7016620.htm", "pdf": "https://www.gov.cn/zhengce/zhengceku/202504/P020250401157366903671.pdf", "effective_date": "2025-05-01", "inspected_print_pages": [1, 16, 17]},
+    {"code": "GB 55016-2021", "source": "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html", "pdf": "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/W020220412565025615406.pdf", "effective_date": "2022-04-01", "inspected_print_pages": [1, 2, 3, 4]}
+  ],
+  "official_catalog_records": [
+    {"code": "GB/T 19889.1-2026", "published": "2026-01-28", "effective": "2026-08-01", "state": "现行", "source": "https://std.samr.gov.cn/gb/search/gbDetailed?id=49FD1852CB7CC31FE06397BE0A0A1304", "replaces_all": ["GB/T 19889.4-2005"], "replaces_part": ["GB/T 19889.14-2010"]},
+    {"code": "GB/T 19889.3-2026", "published": "2026-01-28", "effective": "2026-08-01", "state": "现行", "source": "https://std.samr.gov.cn/gb/search/gbDetailed?id=49FD1852CB7EC31FE06397BE0A0A1304"},
+    {"code": "GB/T 19889.7-2022", "published": "2022-07-11", "effective": "2023-02-01", "state": "现行", "source": "https://std.samr.gov.cn/gb/search/gbDetailed?id=E3C42FB7AC2C2086E05397BE0A0A19F0"},
+    {"code": "GB/T 19889.2-2022", "published": "2022-03-09", "effective": "2022-10-01", "state": "现行", "source": "https://std.samr.gov.cn/gb/search/gbDetailed?id=DAB8B400463F896BE05397BE0A0A0B32"}
+  ],
+  "incomplete_checks": [
+    {"code": "GB/T 50121", "source": "https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html", "query": "建筑隔声评价标准", "result": "公开标题查询显示暂无数据；不能据此判断标准废止或现行版本。另读2005原文副本，不冒充当前官方目录确认。"},
+    {"code": "GB 50118-2010", "source": "https://gf.cabr-fire.com/article-49097.htm", "result": "制定单位公告2011-06-01实施；2025官方公告确认旧强制条款废止关系；尚缺完整当期目录状态核验。"},
+    {"code": "GB/T 19889 field methods", "result": "官方目录版本核对完成，完整操作条款未读全；正式检测前由机构核实全文、评价标准与适用工况。"}
+  ]
+}

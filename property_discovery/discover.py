@@ -11,6 +11,8 @@ from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 from .browser import read_page, validate_url
+from .investigate import community_key, investigate
+from .acoustics import enrich
 
 
 DEFAULT_URLS = ["https://xz.ke.com/ershoufang/",
@@ -71,6 +73,10 @@ def apply_detail(row, detail):
     result['community_url'] = detail.get('community_url')
     result['region'] = detail.get('region')
     result['listed_date'] = transaction.get('挂牌时间')
+    for key in ('features', 'feedback', 'rooms', 'images', 'overview'):
+        result[key] = detail.get(key, {} if key == 'features' else '' if key == 'overview' else [])
+    if detail.get('title'):
+        result['title'] = detail['title']
     result['floor'] = base.get('所在楼层') or result.get('floor')
     result['layout'] = base.get('房屋户型') or result.get('layout')
     purpose = transaction.get('房屋用途', '')
@@ -117,6 +123,17 @@ def write_json(path, value):
     temp.replace(path)
 
 
+def write_reports(run, report_path):
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(render_report(run), encoding='utf-8')
+    if run.get('schema_version', 1) >= 3:
+        from .report import render_acoustic_details
+        # Derive the companion path from the output report, including test roots.
+        companion = report_path.parent / 'property_discovery' / 'acoustic_investigations.md'
+        companion.parent.mkdir(parents=True, exist_ok=True)
+        companion.write_text(render_acoustic_details(run), encoding='utf-8')
+
+
 def priority(row):
     floor = row.get('floor') or ''
     floor_band = 0 if '低' in floor else 1 if '中' in floor else 2
@@ -135,6 +152,13 @@ def markdown(value):
 
 
 def render_report(run):
+    if run.get('schema_version', 1) >= 2:
+        from .report import render_v2
+        return render_v2(run)
+    return _render_report_v1(run)
+
+
+def _render_report_v1(run):
     rows = [r for r in run['properties'] if qualifies(r, run['filters'])]
     # Prefer community diversity without pretending different apartments are identical.
     ordered, seen, later = [], set(), []
@@ -211,14 +235,44 @@ def render_report(run):
     return '\n'.join(lines)
 
 
+def diverse_order(matches):
+    """Round-robin regions and community IDs before considering repeat units."""
+    groups, regions = {}, {}
+    for row in matches:
+        key = community_key(row)
+        groups.setdefault(key, []).append(row)
+        region = row.get('search_region', 'custom')
+        if key not in regions.setdefault(region, []):
+            regions[region].append(key)
+    keys, seen = [], set()
+    for index in range(max((len(keys) for keys in regions.values()), default=0)):
+        for region_keys in regions.values():
+            if index < len(region_keys) and region_keys[index] not in seen:
+                key = region_keys[index]
+                seen.add(key)
+                keys.append(key)
+    ordered_groups = [sorted(groups[key], key=priority) for key in keys]
+    return [group[index] for index in range(max((len(g) for g in ordered_groups), default=0))
+            for group in ordered_groups if index < len(group)]
+
+
 def collect(args, reader=read_page, sleeper=time.sleep):
     now = dt.datetime.now(ZoneInfo('Asia/Shanghai'))
     run_id = now.strftime('%Y%m%dT%H%M%S%f%z')
-    list_urls = args.url or (DEFAULT_URLS + (AUXILIARY_URLS if getattr(args, 'auxiliary', False) else []))
-    run = {'run_id': run_id, 'collected_at': now.isoformat(timespec='seconds'), 'list_urls': list_urls,
+    if args.url:
+        scopes = [{'name': f'自定义片区{index}', 'region': f'custom{index}', 'url': url,
+                   'scope': 'boundary_pending'} for index, url in enumerate(args.url, 1)]
+    else:
+        plan_path = getattr(args, 'plan', Path(__file__).with_name('search_plan.json'))
+        scopes = json.loads(Path(plan_path).read_text(encoding='utf-8'))['scopes']
+    list_urls = [scope['url'] for scope in scopes]
+    if any(validate_url(url) != 'xz.ke.com' for url in list_urls):
+        raise ValueError('V2/V3 listing and transaction collection requires Beike only')
+    run = {'schema_version': 3, 'run_id': run_id, 'collected_at': now.isoformat(timespec='seconds'), 'list_urls': list_urls,
            'filters': {'city': '徐州', 'area_sqm': [40, 60], 'min_price_wan': args.min_price,
                        'max_price_wan': args.max_price, 'third_ring': 'prefer_verified'},
-           'target': args.target, 'properties': [], 'access_log': [], 'rejected': [],
+           'target': args.target, 'target_unit': 'distinct_communities', 'properties': [],
+           'coverage': [], 'access_log': [], 'rejected': [],
            'stats': {'cards': 0, 'unique_listings': 0, 'numeric_matches': 0, 'detail_attempts': 0}}
     script = Path(__file__).with_name('extract.js').read_text(encoding='utf-8')
     blocked_hosts, unique, communities = set(), {}, {}
@@ -243,22 +297,45 @@ def collect(args, reader=read_page, sleeper=time.sleep):
         checkpoint()
         return payload
 
-    for url in list_urls:
+    list_limit = getattr(args, 'max_list_pages', 30)
+    for scope in scopes[:list_limit]:
+        url = scope['url']
         payload = visit(url)
+        coverage = dict(scope, status=payload.get('status'), reason=payload.get('reason'),
+                        numeric_matches=0, communities=0)
+        run['coverage'].append(coverage)
         if payload.get('status') != 'ok':
             continue
+        scope_matches = []
         for raw in payload.get('rows', []):
             run['stats']['cards'] += 1
             try:
                 host = validate_url(raw['url'])
             except (ValueError, KeyError):
                 continue
-            raw['source'] = '贝壳' if host == 'xz.ke.com' else '房天下' if host == 'xz.esf.fang.com' else '安居客'
+            if host != 'xz.ke.com':
+                continue
+            if scope.get('name_filter') and scope['name_filter'] not in raw.get('community', ''):
+                continue
+            raw['source'] = '贝壳'
             row = normalize(raw)
+            row['search_region'] = scope['region']
+            row['search_scopes'] = [scope]
+            row['scope_label'] = ('南区允许环外补充，实际边界待核' if 'south' in scope.get('scope', '')
+                                  else '三环边界待核，不以行政区替代')
+            if not preliminary_filter(row, args.min_price, args.max_price):
+                scope_matches.append(row)
             # Same URL repeated in price-filtered and unfiltered lists is one listing.
             if row['url'] not in unique:
                 unique[row['url']] = row
+            elif scope not in unique[row['url']]['search_scopes']:
+                unique[row['url']]['search_scopes'].append(scope)
+        coverage['numeric_matches'] = len(scope_matches)
+        coverage['communities'] = len({community_key(row) for row in scope_matches})
         checkpoint()
+    for scope in scopes[list_limit:]:
+        run['coverage'].append(dict(scope, status='unvisited', reason='bounded_list_page_limit',
+                                    numeric_matches=0, communities=0))
     run['stats']['unique_listings'] = len(unique)
     matches = []
     for row in unique.values():
@@ -269,20 +346,23 @@ def collect(args, reader=read_page, sleeper=time.sleep):
         else:
             matches.append(row)
     run['stats']['numeric_matches'] = len(matches)
-    # Auxiliary list cards are retained as leads until their detail adapter is verified.
-    for row in matches:
-        if urlsplit(row['url']).hostname != 'xz.ke.com':
-            row['qualification'], row['qualification_reason'] = 'pending_detail', 'auxiliary_detail_adapter_not_verified'
-            run['properties'].append(row)
-    attempts = 0
-    for row in sorted((r for r in matches if urlsplit(r['url']).hostname == 'xz.ke.com'), key=priority):
+    attempts, community_attempts, valid_communities = 0, {}, set()
+    run['stop_reason'] = '已读有限覆盖计划；可访问线索耗尽'
+    for row in diverse_order(matches):
+        key = community_key(row)
+        if key in valid_communities or community_attempts.get(key, 0) >= getattr(args, 'max_per_community', 2):
+            continue
         if attempts >= args.max_details:
+            run['stop_reason'] = '达到详情访问数量上限，不无限扩大搜索'
             break
         if urlsplit(row['url']).hostname in blocked_hosts:
+            run['stop_reason'] = '贝壳出现访问限制，已停止，不绕过'
             break
         attempts += 1
+        community_attempts[key] = community_attempts.get(key, 0) + 1
         run['stats']['detail_attempts'] = attempts
         item = apply_detail(row, visit(row['url']))
+        item['detail_read_at'] = run['access_log'][-1]['read_at']
         community_url = item.get('community_url')
         if community_url:
             if community_url not in communities:
@@ -291,17 +371,20 @@ def collect(args, reader=read_page, sleeper=time.sleep):
             if community.get('status') == 'ok':
                 item['address'] = community.get('address')
                 item['community_attributes'] = community.get('attributes', {})
+                for field in ('coordinates', 'history', 'surroundings', 'map_access'):
+                    item[field] = community.get(field, {} if field == 'surroundings' else None if field == 'coordinates' else [])
+        item = enrich(investigate(item))
         run['properties'].append(item)
+        if qualifies(item, run['filters']):
+            valid_communities.add(community_key(item))
         checkpoint()
-        count = sum(qualifies(r, run['filters']) for r in run['properties'])
-        if count >= args.target:
+        if len(valid_communities) >= args.target:
+            run['stop_reason'] = '完成有限分区覆盖后，达到不同小区线索目标；不等于全部居住条件已核验'
             break
     run['unvisited_matches'] = [r for r in matches if r['url'] not in {p['url'] for p in run['properties']}]
     checkpoint()
     write_json(args.output / 'latest.json', run)
-    report = render_report(run)
-    args.report.parent.mkdir(parents=True, exist_ok=True)
-    args.report.write_text(report, encoding='utf-8')
+    write_reports(run, args.report)
     return run
 
 
@@ -309,25 +392,29 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--min-price', type=float, default=0, help='万元；默认不设最低价')
     parser.add_argument('--max-price', type=float, default=50)
-    parser.add_argument('--target', type=int, default=10)
-    parser.add_argument('--max-details', type=int, default=30)
+    parser.add_argument('--target', type=int, default=20, help='不同小区数，不是房源套数')
+    parser.add_argument('--max-details', type=int, default=60)
+    parser.add_argument('--max-per-community', type=int, default=2)
+    parser.add_argument('--max-list-pages', type=int, default=30)
+    parser.add_argument('--plan', type=Path, default=Path(__file__).with_name('search_plan.json'))
     parser.add_argument('--delay', type=float, default=2, help='读取间隔秒，最低2秒')
     parser.add_argument('--url', action='append', help='公开列表URL，可重复；不自动无限翻页')
-    parser.add_argument('--auxiliary', action='store_true', help='额外读取辅助平台列表，但候选仍只计贝壳')
     parser.add_argument('--output', type=Path, default=Path('property_discovery/data'))
     parser.add_argument('--report', type=Path, default=Path('candidate_properties.md'))
     args = parser.parse_args()
     if (not all(math.isfinite(v) for v in (args.min_price, args.max_price, args.delay))
             or not 0 <= args.min_price < args.max_price <= 50 or args.delay < 2
-            or not 1 <= args.target <= 30 or not 1 <= args.max_details <= 50
-            or args.url and len(args.url) > 10):
-        parser.error('Invalid bounds: price 0..50, delay >=2, target 1..30, details 1..50, <=10 list URLs')
+            or not 1 <= args.target <= 30 or not 1 <= args.max_details <= 80
+            or not 1 <= args.max_per_community <= 3 or not 1 <= args.max_list_pages <= 40
+            or args.url and len(args.url) > 30):
+        parser.error('Invalid bounds: price 0..50, delay >=2, target 1..30, details 1..80, <=30 list URLs')
     try:
         run = collect(args)
     except ValueError as exc:
         parser.error(str(exc))
     print(json.dumps({'run_id': run['run_id'], 'stats': run['stats'],
                       'public_field_matches': sum(qualifies(r, run['filters']) for r in run['properties']),
+                      'distinct_communities': len({community_key(r) for r in run['properties'] if qualifies(r, run['filters'])}),
                       'report': str(args.report)}, ensure_ascii=False))
 
 

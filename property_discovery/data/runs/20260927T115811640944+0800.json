@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "run_id": "20260927T121802109121+0800",
-  "collected_at": "2026-09-27T12:18:02+08:00",
+  "run_id": "20260927T115811640944+0800",
+  "collected_at": "2026-09-27T11:58:11+08:00",
   "list_urls": [
     "https://xz.ke.com/ershoufang/quanshanqu/ba40ea60bp0ep50",
     "https://xz.ke.com/ershoufang/gulouqu/ba40ea60bp0ep50",
@@ -763,8 +763,7 @@
         "calculated_unit_price_yuan": 5619.15,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103144431302.html",
@@ -1416,8 +1415,7 @@
         "calculated_unit_price_yuan": 2980.33,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154195887.html",
@@ -2092,8 +2090,7 @@
         "calculated_unit_price_yuan": 5027.07,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154128969.html",
@@ -2746,8 +2743,7 @@
         "calculated_unit_price_yuan": 2986.77,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103148487949.html",
@@ -3171,8 +3167,7 @@
         "calculated_unit_price_yuan": 1844.34,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103152473801.html",
@@ -3919,8 +3914,7 @@
         "calculated_unit_price_yuan": 6125.9,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103135065699.html",
@@ -4664,8 +4658,7 @@
         "calculated_unit_price_yuan": 5651.43,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103152788547.html",
@@ -5356,8 +5349,7 @@
         "calculated_unit_price_yuan": 4547.12,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103150156290.html",
@@ -6025,8 +6017,7 @@
         "calculated_unit_price_yuan": 3860.66,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154116354.html",
@@ -6606,10 +6597,7 @@
         "calculated_unit_price_yuan": 4671.48,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": [
-        "平台梯户比例涉及14/28户，共用空间密度、走廊布局及服务范围待核"
-      ]
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103149706974.html",
@@ -7238,8 +7226,7 @@
         "calculated_unit_price_yuan": 2474.45,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154110526.html",
@@ -7912,8 +7899,7 @@
         "calculated_unit_price_yuan": 3710.75,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103152687047.html",
@@ -8643,8 +8629,7 @@
         "calculated_unit_price_yuan": 5672.95,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154139607.html",
@@ -9383,8 +9368,7 @@
         "calculated_unit_price_yuan": 3595.69,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103153066133.html",
@@ -9861,8 +9845,7 @@
         "calculated_unit_price_yuan": 2658.63,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103152203261.html",
@@ -10510,11 +10493,7 @@
         "calculated_unit_price_yuan": 3392.71,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": [
-        "平台梯户比例涉及14/28户，共用空间密度、走廊布局及服务范围待核",
-        "描述涉及民宿/办公或阁楼，正常居住用途、邻户使用及产权范围须额外核查"
-      ]
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154032261.html",
@@ -11197,8 +11176,7 @@
         "calculated_unit_price_yuan": 5126.39,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103152400847.html",
@@ -11905,8 +11883,7 @@
         "calculated_unit_price_yuan": 3540.52,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103153508605.html",
@@ -12583,8 +12560,7 @@
         "calculated_unit_price_yuan": 3945.48,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103153485760.html",
@@ -13222,10 +13198,7 @@
         "calculated_unit_price_yuan": 2500.96,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": [
-        "描述涉及民宿/办公或阁楼，正常居住用途、邻户使用及产权范围须额外核查"
-      ]
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103139129308.html",
@@ -13825,8 +13798,7 @@
         "calculated_unit_price_yuan": 7591.09,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103153885347.html",
@@ -14239,22 +14211,6 @@
             "retrieved_at": "2026-09-27T11:54:40+08:00"
           },
           {
-            "dimension": "external",
-            "grade": "C",
-            "fact": "地图在煤建四处小区参考点周围显示九里山及丁万河南路带状公园；这证明周边有山体/公园标注，不证明该卧室安静。",
-            "source_url": "https://xz.ke.com/xiaoqu/8737132128840546/",
-            "scope": "community_map_visual_review_not_apartment",
-            "retrieved_at": "2026-09-27T12:08:20+08:00"
-          },
-          {
-            "dimension": "external",
-            "grade": "C",
-            "fact": "地图西侧显示轨道交通标记，附近也有道路、学校与公共游览设施；具体线路/道路到楼栋距离、振动、游览活动时段未核。",
-            "source_url": "https://xz.ke.com/xiaoqu/8737132128840546/",
-            "scope": "community_map_visual_review_not_apartment",
-            "retrieved_at": "2026-09-27T12:08:20+08:00"
-          },
-          {
             "dimension": "layout",
             "grade": "D",
             "fact": "适宜人群：孕婴老幼本房适合自住，都方便楼层好配套齐全不临街距离植物园近环境优",
@@ -14264,7 +14220,6 @@
           }
         ],
         "favorable_leads": [
-          "C级地图显示周边山体/公园，可优先核查非临街楼栋与卧室；不能据此排除道路、轨交或公园活动声音",
           "描述称不临街：可优先定位卧室窗户复核；仅D级线索，不是环境事实"
         ],
         "risk_questions": [
@@ -14274,7 +14229,6 @@
           "徐州幼师幼教集团万科城幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
           "徐州市平山路幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
           "蒙台梭利幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
-          "地图出现轨道交通与游览设施，需确认本楼栋声源路径和昼夜工况；距离未量测",
           "公开描述1楼：核查入口、停车及楼道开关门，楼上撞击声路径仍存在"
         ],
         "gaps": {
@@ -14317,7 +14271,7 @@
         "evidence_counts": {
           "A": 0,
           "B": 0,
-          "C": 8,
+          "C": 6,
           "D": 5
         },
         "actual_performance_verified": false,
@@ -14362,28 +14316,7 @@
         "calculated_unit_price_yuan": 4246.68,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "environment_review": {
-        "image": "property_discovery/data/maps/8737132128840546.png",
-        "facts": [
-          {
-            "text": "地图在煤建四处小区参考点周围显示九里山及丁万河南路带状公园；这证明周边有山体/公园标注，不证明该卧室安静。",
-            "source_name": "贝壳公开百度地图",
-            "source_url": "https://xz.ke.com/xiaoqu/8737132128840546/"
-          },
-          {
-            "text": "地图西侧显示轨道交通标记，附近也有道路、学校与公共游览设施；具体线路/道路到楼栋距离、振动、游览活动时段未核。",
-            "source_name": "贝壳公开百度地图",
-            "source_url": "https://xz.ke.com/xiaoqu/8737132128840546/"
-          }
-        ],
-        "favorable_lead": "C级地图显示周边山体/公园，可优先核查非临街楼栋与卧室；不能据此排除道路、轨交或公园活动声音",
-        "risks": [
-          "地图出现轨道交通与游览设施，需确认本楼栋声源路径和昼夜工况；距离未量测"
-        ],
-        "reviewed_at": "2026-09-27T12:08:20+08:00"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103148275530.html",
@@ -14414,7 +14347,7 @@
           "scope": "south_extension_boundary_pending"
         }
       ],
-      "scope_label": "南区环外补充：用户明确允许碧水湾；小区参考点在南三环南侧，本套楼栋待核",
+      "scope_label": "南区允许环外补充，实际边界待核",
       "detail_status": "ok",
       "public_base": {
         "房屋户型": "2室1厅1卫",
@@ -14903,22 +14836,6 @@
             "retrieved_at": "2026-09-27T11:59:19+08:00"
           },
           {
-            "dimension": "external",
-            "grade": "C",
-            "fact": "地图显示碧水湾小区参考点位于南三环快速路南侧，西侧有泉山森林公园；按用户明确许可作为南区环外补充，不是三环内候选证明。",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127695724666/",
-            "scope": "community_map_visual_review_not_apartment",
-            "retrieved_at": "2026-09-27T12:08:20+08:00"
-          },
-          {
-            "dimension": "external",
-            "grade": "C",
-            "fact": "南三环快速路、大学片区均出现在该地图视图中；没有具体房源楼栋/窗户标记，不能确定卧室面向公园或估计室内分贝。",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127695724666/",
-            "scope": "community_map_visual_review_not_apartment",
-            "retrieved_at": "2026-09-27T12:08:20+08:00"
-          },
-          {
             "dimension": "layout",
             "grade": "D",
             "fact": "核心卖点：此房楼层好 采光好 南北通风 两室朝阳 电梯房",
@@ -14927,18 +14844,14 @@
             "retrieved_at": "2026-09-27T11:58:18+08:00"
           }
         ],
-        "favorable_leads": [
-          "C级地图确认泉山森林公园环境线索；需寻找并核实不朝快速路的具体楼栋和卧室，当前并未确定"
-        ],
+        "favorable_leads": [],
         "risk_questions": [
           "泉山区永嘉太阳城社区卫生服务站：需定位医疗车辆/急诊声源、营业时段与卧室关系；实际声压未知",
           "嘉美社区卫生服务站：需定位医疗车辆/急诊声源、营业时段与卧室关系；实际声压未知",
           "江苏建筑职业技术学院-医院：需定位医疗车辆/急诊声源、营业时段与卧室关系；实际声压未知",
           "华商山语世家幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
           "领航幼教集团太阳城幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
-          "徐州市学府路幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
-          "已见南三环快速路潜在声源；需要具体楼栋位置、屏障与卧室昼夜测试",
-          "幼儿园地图距离167米，小区参考点口径；需查广播与上下学工况"
+          "徐州市学府路幼儿园：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知"
         ],
         "gaps": {
           "structure": [
@@ -14980,7 +14893,7 @@
         "evidence_counts": {
           "A": 0,
           "B": 0,
-          "C": 8,
+          "C": 6,
           "D": 8
         },
         "actual_performance_verified": false,
@@ -15025,30 +14938,7 @@
         "calculated_unit_price_yuan": 3207.1,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "environment_review": {
-        "image": "property_discovery/data/maps/8737127695724666.png",
-        "facts": [
-          {
-            "text": "地图显示碧水湾小区参考点位于南三环快速路南侧，西侧有泉山森林公园；按用户明确许可作为南区环外补充，不是三环内候选证明。",
-            "source_name": "贝壳公开百度地图",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127695724666/"
-          },
-          {
-            "text": "南三环快速路、大学片区均出现在该地图视图中；没有具体房源楼栋/窗户标记，不能确定卧室面向公园或估计室内分贝。",
-            "source_name": "贝壳公开百度地图",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127695724666/"
-          }
-        ],
-        "favorable_lead": "C级地图确认泉山森林公园环境线索；需寻找并核实不朝快速路的具体楼栋和卧室，当前并未确定",
-        "risks": [
-          "已见南三环快速路潜在声源；需要具体楼栋位置、屏障与卧室昼夜测试",
-          "幼儿园地图距离167米，小区参考点口径；需查广播与上下学工况"
-        ],
-        "scope_label": "南区环外补充：用户明确允许碧水湾；小区参考点在南三环南侧，本套楼栋待核",
-        "reviewed_at": "2026-09-27T12:08:20+08:00"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103151619872.html",
@@ -15632,8 +15522,7 @@
         "calculated_unit_price_yuan": 4355.89,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103134365756.html",
@@ -16260,27 +16149,9 @@
             "source_url": "https://xz.ke.com/xiaoqu/8737127367364536/",
             "scope": "community_reference_not_apartment",
             "retrieved_at": "2026-09-27T11:59:47+08:00"
-          },
-          {
-            "dimension": "external",
-            "grade": "C",
-            "fact": "地图显示湖滨西村参考点附近有工农路及轨道交通标记，南侧有滨湖公园和湖面；公园并不抵消道路及活动声风险。",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127367364536/",
-            "scope": "community_map_visual_review_not_apartment",
-            "retrieved_at": "2026-09-27T12:08:20+08:00"
-          },
-          {
-            "dimension": "external",
-            "grade": "C",
-            "fact": "贝壳地址为湖北路，地图参考标记则靠工农路一带；需核实小区范围、地图参考点与具体楼栋，不能按单一标记确定房源位置。",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127367364536/",
-            "scope": "community_map_visual_review_not_apartment",
-            "retrieved_at": "2026-09-27T12:08:20+08:00"
           }
         ],
-        "favorable_leads": [
-          "C级地图显示滨湖公园/湖面，为环境调查提供目标；尚不能确认本套卧室朝向或避开交通声"
-        ],
+        "favorable_leads": [],
         "risk_questions": [
           "徐州市泉山区段庄街道城西社区卫生服务站：需定位医疗车辆/急诊声源、营业时段与卧室关系；实际声压未知",
           "泉山区湖滨社区卫生服务中心：需定位医疗车辆/急诊声源、营业时段与卧室关系；实际声压未知",
@@ -16290,9 +16161,7 @@
           "徐州市泉山区琴乐幼儿园(少年路店)：需定位广播/上下学声源、营业时段与卧室关系；实际声压未知",
           "恒盛广场(徐州泉山店)：需定位营业/装卸/人流声源、营业时段与卧室关系；实际声压未知",
           "新都商业广场(徐州泉山店)：需定位营业/装卸/人流声源、营业时段与卧室关系；实际声压未知",
-          "尚城国际购物中心(泉山店)：需定位营业/装卸/人流声源、营业时段与卧室关系；实际声压未知",
-          "地图参考点靠工农路与轨交标记，需查真实楼栋及卧室的交通声/振动",
-          "社区总6474户、125栋不代表本楼层密度，仍须核对梯户及入口"
+          "尚城国际购物中心(泉山店)：需定位营业/装卸/人流声源、营业时段与卧室关系；实际声压未知"
         ],
         "gaps": {
           "structure": [
@@ -16334,7 +16203,7 @@
         "evidence_counts": {
           "A": 0,
           "B": 0,
-          "C": 11,
+          "C": 9,
           "D": 8
         },
         "actual_performance_verified": false,
@@ -16379,29 +16248,7 @@
         "calculated_unit_price_yuan": 5083.02,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "environment_review": {
-        "image": "property_discovery/data/maps/8737127367364536.png",
-        "facts": [
-          {
-            "text": "地图显示湖滨西村参考点附近有工农路及轨道交通标记，南侧有滨湖公园和湖面；公园并不抵消道路及活动声风险。",
-            "source_name": "贝壳公开百度地图",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127367364536/"
-          },
-          {
-            "text": "贝壳地址为湖北路，地图参考标记则靠工农路一带；需核实小区范围、地图参考点与具体楼栋，不能按单一标记确定房源位置。",
-            "source_name": "贝壳公开百度地图",
-            "source_url": "https://xz.ke.com/xiaoqu/8737127367364536/"
-          }
-        ],
-        "favorable_lead": "C级地图显示滨湖公园/湖面，为环境调查提供目标；尚不能确认本套卧室朝向或避开交通声",
-        "risks": [
-          "地图参考点靠工农路与轨交标记，需查真实楼栋及卧室的交通声/振动",
-          "社区总6474户、125栋不代表本楼层密度，仍须核对梯户及入口"
-        ],
-        "reviewed_at": "2026-09-27T12:08:20+08:00"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103135323540.html",
@@ -17072,8 +16919,7 @@
         "calculated_unit_price_yuan": 5092.51,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103153956386.html",
@@ -17641,8 +17487,7 @@
         "calculated_unit_price_yuan": 4671.81,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103140757760.html",
@@ -18346,8 +18191,7 @@
         "calculated_unit_price_yuan": 5205.91,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103154118470.html",
@@ -18967,8 +18811,7 @@
         "calculated_unit_price_yuan": 4841.78,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     },
     {
       "url": "https://xz.ke.com/ershoufang/103152826296.html",
@@ -19540,8 +19383,7 @@
         "calculated_unit_price_yuan": 3574.98,
         "purchase_authorized": false,
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
-      },
-      "living_conflicts": []
+      }
     }
   ],
   "coverage": [
@@ -20705,8 +20547,7 @@
     "cards": 594,
     "unique_listings": 512,
     "numeric_matches": 467,
-    "detail_attempts": 22,
-    "targeted_detail_attempts": 8
+    "detail_attempts": 22
   },
   "stop_reason": "完成有限分区覆盖后，达到不同小区线索目标；不等于全部居住条件已核验",
   "unvisited_matches": [
@@ -34055,7 +33896,7 @@
       "scope_label": "南区允许环外补充，实际边界待核"
     }
   ],
-  "parent_run_id": "20260927T121417740395+0800",
+  "parent_run_id": "20260927T115022873893+0800",
   "refresh_stop_reason": "bounded_existing_communities_complete",
   "privacy_redactions": {
     "policy": "Conservatively omit image URL filenames resembling phone numbers; could be platform IDs, not confirmed contacts",

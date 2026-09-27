@@ -8,6 +8,8 @@
 - `tools/score_property.py`：有证据才计分，硬门槛优先，未知项限制推荐等级。
 - `property_discovery/`：公开挂牌发现，40-60平方米、最低价不限、最高50万元；访问失败明确记录。
 - `candidate_properties.md`：最近一次发现报告，未知条件不冒充已核验。
+- `property_discovery/acoustic_investigations.md`：具体房源六维工程证据、风险与核验方法。
+- `property_discovery/acoustic_reference.md`：声学规范版本、指标与测量边界；未完成的官方版本核验单列。
 
 运行（Python 3标准库，无额外依赖）：
 

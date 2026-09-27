@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "run_id": "20260927T121802109121+0800",
-  "collected_at": "2026-09-27T12:18:02+08:00",
+  "run_id": "20260927T121417740395+0800",
+  "collected_at": "2026-09-27T12:14:17+08:00",
   "list_urls": [
     "https://xz.ke.com/ershoufang/quanshanqu/ba40ea60bp0ep50",
     "https://xz.ke.com/ershoufang/gulouqu/ba40ea60bp0ep50",
@@ -6608,7 +6608,7 @@
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
       },
       "living_conflicts": [
-        "平台梯户比例涉及14/28户，共用空间密度、走廊布局及服务范围待核"
+        "平台显示每层14/28户，共用空间与低密度偏好冲突待核"
       ]
     },
     {
@@ -10512,7 +10512,7 @@
         "interpretation": "C表示证据不完整，不表示隔音中等；区间不是价格或品质排序"
       },
       "living_conflicts": [
-        "平台梯户比例涉及14/28户，共用空间密度、走廊布局及服务范围待核",
+        "平台显示每层14/28户，共用空间与低密度偏好冲突待核",
         "描述涉及民宿/办公或阁楼，正常居住用途、邻户使用及产权范围须额外核查"
       ]
     },
@@ -34055,7 +34055,7 @@
       "scope_label": "南区允许环外补充，实际边界待核"
     }
   ],
-  "parent_run_id": "20260927T121417740395+0800",
+  "parent_run_id": "20260927T115811640944+0800",
   "refresh_stop_reason": "bounded_existing_communities_complete",
   "privacy_redactions": {
     "policy": "Conservatively omit image URL filenames resembling phone numbers; could be platform IDs, not confirmed contacts",
