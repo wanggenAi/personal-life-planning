@@ -44,9 +44,10 @@ def assess(row):
     for item in row.get('environment_evidence', []):
         add('external', 'C', f"{item['name']}约{item['distance']}；地图参考点距离，不是卧室距离",
             item['source_url'], 'community_reference_not_apartment')
-        if item['category'] in ('medical', 'education', 'shopping'):
-            label = {'medical': '医疗车辆/急诊', 'education': '广播/上下学', 'shopping': '营业/装卸/人流'}[item['category']]
-            risks.append(f"{item['name']}：需定位{label}声源、营业时段与卧室关系；实际声压未知")
+        # POIs are location evidence, not evidence of a particular sound source.
+        distance = re.fullmatch(r'(\d+(?:\.\d+)?)米', item['distance'])
+        if item['category'] == 'education' and distance and float(distance.group(1)) < 350:
+            risks.append(f"{item['name']}地图参考点约{item['distance']}：先核查操场/接送口与本套窗户关系；未确认广播、遮挡或实际噪声")
     review = row.get('environment_review', {})
     for item in review.get('facts', []):
         add('external', 'C', item['text'], item['source_url'], 'community_map_visual_review_not_apartment')
@@ -54,6 +55,10 @@ def assess(row):
     if review.get('favorable_lead'):
         favorable.append(review['favorable_lead'])
     risks.extend(review.get('risks', []))
+    for item in row.get('geographic_environment', []):
+        add('external', 'C', item['fact'], item['source_url'], 'community_reference_not_apartment')
+        evidence[-1]['retrieved_at'] = item['retrieved_at']
+    risks.extend(row.get('focused_investigation', {}).get('risks', []))
     for key, claim in row.get('features', {}).items():
         if re.search(r'不临街|不靠路|内部|内街|边户|电梯井|高架|管道|底商|阁楼|步梯|电梯', claim):
             add('equipment' if '设备' in claim or '管道' in claim else 'layout', 'D', f'{key}：{claim[:220]}', url)

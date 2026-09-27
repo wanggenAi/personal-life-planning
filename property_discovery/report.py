@@ -147,6 +147,8 @@ def render_card(row, alternatives, index, run):
 
 
 def render_v2(run):
+    if run.get('schema_version', 1) >= 4:
+        return render_v4(run)
     rows = [row for row in run['properties'] if row.get('qualification') == 'public_fields_match']
     pairs = representatives(rows)
     basics = [row for row in rows if row.get('floor_status') == 'eligible_next_round']
@@ -217,6 +219,75 @@ def render_v2(run):
     return '\n'.join(lines)
 
 
+def render_v4(run):
+    rows = [r for r in run['properties'] if r.get('qualification') == 'public_fields_match']
+    visits = [r for r, _ in representatives(rows) if r.get('visit_ready')][:5]
+    focuses = [r for r in rows if r.get('focused_investigation')]
+    excluded = [r for r in run['properties'] if r.get('qualification') == 'excluded']
+    labels = {'inside_reference': '环内参考点初核', 'outside_reference': '环外参考点初核',
+              'near_boundary': '边界附近待楼栋核实', 'location_conflict': '定位资料冲突', 'unknown': '坐标未知'}
+    lines = ['# 徐州自由居所 V4：实地调查名单', '',
+             f"资料更新：{run['collected_at']}。本轮仅复核已有30套，未增加搜索或小区。挂牌、成交分别保留原采集日期。", '',
+             f"- 有效住宅公开线索：**{len(rows)}套 / {len(representatives(rows))}个小区**；住宅登记与交易资格仍需查验。",
+             f"- 三环内小区参考点初核：**{sum(r.get('inside_third_ring') is True for r in rows)}套**；具体楼栋测绘确认：**0套**。不能把这两个数字混用。",
+             f"- 楼层偏好初筛通过：**{sum(r.get('floor_status') == 'eligible_next_round' for r in rows)}套**（平台公开证据；不是现场确认）。",
+             f"- 本轮重点逐套环境/布局复核：**{len(focuses)}套**；原有地图周边信息{sum(bool(r.get('environment_evidence')) for r in rows)}套，不等同于已排除噪声。",
+             f"- 可安排有明确核验任务的实地调查：**{len(visits)}套**；安静、隔音、低密度全部验证：**0套**；明确楼层不符排除：**{len(excluded)}套**。", '',
+             '**这不是买房推荐。**名单表示值得去获取证据，不表示已满足安静要求；电梯未知仍如实保留。公开明确1—3楼即可通过楼层偏好，矛盾字段则不能通过。', '',
+             '## 先看哪些房子', '', '| 房源 | 面积 / 挂牌价 | 楼层 / 电梯 | 为什么值得现场调查 |', '| --- | --- | --- | --- |']
+    if not visits:
+        lines.append('| 暂无 | — | — | 关键证据未通过；见下方具体阻碍 |')
+    for r in visits:
+        f = r['focused_investigation']
+        lines.append(f"| [{r['community']}]({r['url']}) | {r['area_sqm']}㎡ / {r['price_wan']}万 | {floor_text(r)} / {elevator_text(r)} | {text('；'.join(f['facts'][:2]))} |")
+    for r in sorted(focuses, key=lambda r: (not r.get('visit_ready'), r['price_wan'])):
+        f = r['focused_investigation']
+        status = '可安排实地调查，非购买推荐' if r.get('visit_ready') else '先补资料，暂不预约'
+        lines += ['', f"### {r['community']} · {r['area_sqm']}㎡ · 挂牌{r['price_wan']}万元", '',
+                  f"**{status}**。[贝壳挂牌]({r['url']}) · [小区/地图/历史成交]({r.get('community_url')})。",
+                  f"{text(r.get('layout'))}；{floor_text(r)}；电梯：{elevator_text(r)}。本轮挂牌访问：{text(r.get('live_check', {}).get('status'))}，{text(r.get('live_check', {}).get('read_at'))}。",
+                  f"三环：{labels.get(r.get('geography', {}).get('status'), '未知')}；参考点距三环道路约{r.get('geography', {}).get('distance_to_ring_m_approx', '未知')}米，**不是卧室声源距离**。", '',
+                  '**A. 已取得事实与有利线索**（地图C级、平台描述D级；无A级实测/B级构造证明）']
+        lines.extend('- ' + fact for fact in f['facts'])
+        for item in r.get('geographic_environment', []):
+            lines.append(f"- {item['fact']} [公开地图]({item['source_url']})；[留存图片]({item['image']})。")
+        lines += ['', '**B. 潜在声学风险，尚未证明实际干扰**']
+        lines.extend('- ' + risk for risk in f['risks'])
+        lines += ['', '**历史成交，不能直接当买价**']
+        deals = [d for d in history_rows(r) if d['area_match']][:2]
+        for d in deals:
+            link = d.get('url') or d['source_url']
+            lines.append(f"- [{d['deal_date']}成交]({link})：{d['area_sqm']}㎡，{text(d.get('layout'))}，{d['total_price_wan']}万，{text(d.get('floor'))}；{d['comparability']}。采集{r.get('community_read_at')}。")
+        if not deals:
+            lines.append('- 现有公开样本无相近面积记录，不给合理购买价。')
+        else:
+            lines.append('- 挂牌与以上样本的差价原因尚未解释；精确楼层、电梯、装修、时间不能匹配，不做溢价率或未来价格预测。')
+        lines += ['', '**C. 必须取得的现场资料**']
+        lines.extend('- ' + check for check in f['onsite'])
+        if r.get('visit_blockers'):
+            lines.append('- 当前阻碍：' + '；'.join(r['visit_blockers']) + '。')
+        ident = r['url'].split('/')[-1].split('.')[0]
+        lines.append(f"- [全部六维证据、结构材料缺口、图片及历史样本](property_discovery/acoustic_investigations.md#{ident})。")
+        if r.get('images'):
+            lines.append(f"- [贝壳本套公开图片]({r['images'][0]})（可能含VR效果，不能证明隔音）。")
+    lines += ['', '## 其他已有房源：待调查或单列环外', '',
+              '不因低价补进名单。环外不再沿用V3南区放宽；边界附近也不是已确认环外。', '',
+              '| 小区 / 真实挂牌 | 面积 / 万元 | 地理初核 | 未进看房名单的原因 |', '| --- | --- | --- | --- |']
+    for r in run['properties']:
+        if r in focuses:
+            continue
+        reason = r.get('qualification_reason') if r.get('qualification') == 'excluded' else '；'.join(r.get('visit_blockers', []))
+        lines.append(f"| [{text(r['community'])}]({r['url']}) | {r['area_sqm']}㎡ / {r['price_wan']} | {labels.get(r.get('geography', {}).get('status'), '未知')} | {text(reason)} |")
+    lines += ['', '## 来源、缺口与下一步', '',
+              '- [三环道路来源、坐标系、闭合方法和逐小区台账](property_discovery/third_ring_review.md)。使用道路空间闭合，不使用行政区；750米保守待核带不是法定误差上限。',
+              '- 当前房源楼号、分户墙/楼板厚度、井道/设备房/管井位置均未取得对应可靠资料，已转为业主/物业取证和现场任务；不重复搜索或用房龄推算分贝。',
+              '- 历史成交沿用当天已合法取得的贝壳小区页记录，本轮未冒充新采集；[原始快照](property_discovery/data/latest.json)保留各来源时间及访问失败记录。',
+              '- 先对煤建四处、合群索取带楼号的定位和上下层布局，确认可正常交易；预约早晚两次，以正常生活声测试脚步、说话、冲水和门声。明显不满意就退出，不靠便宜抵消。',
+              '- 民和园先补三环楼栋位置；湖滨西村先纠正西村/东村及地图定位冲突，再决定是否进入名单。',
+              '- [沿用原六维工程调查与有效标准参考](property_discovery/acoustic_reference.md)；安静30分/隔音20分仍不填未知中分，不创建新评分。']
+    return '\n'.join(lines) + '\n'
+
+
 def render_acoustic_details(run):
     names = {'structure': '建筑结构', 'materials': '建筑材料', 'layout': '楼栋与户型布局',
              'external': '外部噪声环境', 'equipment': '设备与管道', 'field': '现场声学验证'}
@@ -249,4 +320,22 @@ def render_acoustic_details(run):
                   '- 风险/需要排除的路径：' + ('；'.join(acoustic['risk_questions']) or '未识别不等于不存在，需补声源和房间定位'),
                   '- 隔音实际验证：未完成。结构材料可靠资料：未取得；普通窗/结构标签不能证明指标。',
                   f"- 原评分输出：`{text(row.get('score_assessment'))}`。数值分为空，不以0—100区间推荐购买。"]
+        if run.get('schema_version', 1) >= 4:
+            lines += ['', '### 地理、楼层及现场调查结果', '',
+                      f"- 地理：{text(row.get('geography'))}。三环内字段仅参考点初核，不是本套测绘。",
+                      f"- 楼层：{floor_text(row)}；电梯：{elevator_text(row)}；证据状态：{text(row.get('evidence_level'))}。",
+                      '- 当前阻碍：' + ('；'.join(row.get('visit_blockers', [])) or '可安排取证型看房；实际隔音、产权与安全仍未核验'),
+                      '- 分间朝向：' + ('；'.join(' / '.join(room) for room in row.get('rooms', []) if room and '卧室' in room[0]) or '未知'),
+                      '- 楼栋、每层户数、井道/设备房、楼板/墙体构造：尚未取得对应资料，须现场与档案核实。', '',
+                      '### 公开成交样本（排序先匹配面积和室厅数）', '',
+                      f"记录原采集：{text(row.get('community_read_at'))}；当前挂牌{row.get('price_wan')}万不是成交价。"]
+            if row.get('images'):
+                lines.append(f"- [本套公开图片]({row['images'][0]})（不能从普通图片推算墙板厚度或分贝）。")
+            for d in history_rows(row):
+                lines.append(f"- [{d['deal_date']}]({d.get('url') or d['source_url']})：{d['area_sqm']}㎡ / {d['total_price_wan']}万 / {text(d.get('layout'))} / {text(d.get('floor'))}；{d['comparability']}。")
+            for item in row.get('geographic_environment', []):
+                if item.get('image'):
+                    lines.append(f"\n![公开地图复核：仅小区参考点]({item['image'].replace('property_discovery/', '', 1)})\n")
+            for item in row.get('onsite_checks', []):
+                lines.append('- 现场：' + item)
     return '\n'.join(lines) + '\n'

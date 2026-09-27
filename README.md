@@ -10,6 +10,7 @@
 - `candidate_properties.md`：最近一次发现报告，未知条件不冒充已核验。
 - `property_discovery/acoustic_investigations.md`：具体房源六维工程证据、风险与核验方法。
 - `property_discovery/acoustic_reference.md`：声学规范版本、指标与测量边界；未完成的官方版本核验单列。
+- `property_discovery/third_ring_review.md`：V4三环道路几何、坐标口径及逐小区初核；不是具体房源测绘认定。
 
 运行（Python 3标准库，无额外依赖）：
 

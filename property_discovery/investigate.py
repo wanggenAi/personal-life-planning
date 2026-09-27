@@ -64,7 +64,7 @@ def floor_and_elevator(row):
         status = 'excluded_walkup_above_3'
     elif elevator is True:
         status = 'eligible_next_round' if floor is not None else 'elevator_yes_floor_pending'
-    elif elevator is False and floor in (1, 2, 3):
+    elif floor in (1, 2, 3):
         status = 'eligible_next_round'
     else:
         status = 'pending_floor_or_elevator'
@@ -150,7 +150,15 @@ def history_rows(row):
         if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date) or area is None or total is None:
             continue
         same_area = row['area_sqm'] * 0.8 <= area <= row['area_sqm'] * 1.2
+        same_layout = re.match(r'\d+室\d+厅', item.get('layout', ''))
+        target_layout = re.match(r'\d+室\d+厅', row.get('layout', ''))
+        layout_match = bool(same_layout and target_layout and same_layout.group() == target_layout.group())
         result = dict(item, area_sqm=area, total_price_wan=total,
+                      area_match=same_area, layout_match=layout_match,
+                      exact_floor_match=None, elevator_match=None,
                       comparability='面积初步可比；楼层、电梯、朝向、装修与时间尚需匹配' if same_area else '面积不同，不直接可比')
+        if same_area:
+            result['comparability'] = ('面积及室厅数初步匹配' if layout_match else '仅面积初步匹配，室厅数不同或缺失') + '；精确楼层/电梯/装修未匹配，不用于合理买价'
         results.append(result)
-    return results
+    return sorted(results, key=lambda d: (not d['area_match'], not d['layout_match'],
+                                         abs(d['area_sqm'] - row['area_sqm']), d['deal_date']))
