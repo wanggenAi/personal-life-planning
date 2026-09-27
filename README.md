@@ -6,6 +6,8 @@
 - `templates/property_input.json`：单套房源录入模板，未知值保留null。
 - `templates/transactions.csv`：挂牌与成交分开记录的数据表头。
 - `tools/score_property.py`：有证据才计分，硬门槛优先，未知项限制推荐等级。
+- `property_discovery/`：公开挂牌发现，40-60平方米、最低价不限、最高50万元；访问失败明确记录。
+- `candidate_properties.md`：最近一次发现报告，未知条件不冒充已核验。
 
 运行（Python 3标准库，无额外依赖）：
 
