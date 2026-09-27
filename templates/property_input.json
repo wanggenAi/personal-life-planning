@@ -1,0 +1,33 @@
+{
+  "community": "待录入",
+  "built_year": null,
+  "building": null,
+  "floor": null,
+  "total_floors": null,
+  "area_sqm": null,
+  "price_wan": null,
+  "unit_price_yuan": null,
+  "elevator": null,
+  "surroundings": "待提供地图及现场记录",
+  "gates": {
+    "inside_third_ring": null,
+    "residential_clear_title": null,
+    "structurally_safe": null,
+    "no_major_road_noise": null,
+    "not_above_commercial_street": null,
+    "not_overcrowded": null,
+    "acceptable_property_management": null,
+    "adequate_daylight": null,
+    "not_investment_only": null
+  },
+  "ratings": {
+    "quiet": null,
+    "sound": null,
+    "density": null,
+    "convenience": null,
+    "price": null,
+    "liquidity": null
+  },
+  "evidence": {},
+  "price_evidence_confidence": "unknown"
+}
