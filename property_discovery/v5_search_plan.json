@@ -1,0 +1,53 @@
+{
+  "version": 5,
+  "goal": "徐州成熟生活圈中的闹中取静低层自住房",
+  "hard_filters": {
+    "city": "徐州",
+    "inside_third_ring_preferred": true,
+    "area_sqm_preferred": [50, 60],
+    "floor_allowed": [1, 2],
+    "residential_only": true,
+    "price_wan_target": [25, 35],
+    "price_wan_soft_max": 45
+  },
+  "preferences": {
+    "second_floor_over_first": true,
+    "edge_unit_preferred": true,
+    "east_edge_unit_bonus": true,
+    "low_density_preferred": true,
+    "walkup_or_lowrise_multistory_preferred": true,
+    "households_per_core_preferred_max": 4,
+    "far_preferred_max": 1.8,
+    "mature_daily_life_radius_m": [500, 800],
+    "quiet_is_highest_priority": true
+  },
+  "daily_life_targets": [
+    "农贸市场/菜市场",
+    "超市/便利店",
+    "餐饮",
+    "药店/社区医疗",
+    "公交/地铁",
+    "商场/成熟商业"
+  ],
+  "noise_red_flags": [
+    "主干道/高架/铁路直接暴露",
+    "夜市/KTV/烧烤/酒吧/装卸口",
+    "学校操场/幼儿园广播和接送口",
+    "医院急诊/救护车入口",
+    "停车场出入口/地库坡道",
+    "单元主入口/垃圾点/快递点/电动车集中区",
+    "水泵房/配电房/电梯设备/排水管井",
+    "一楼窗外公共通道或集中停车"
+  ],
+  "priority_communities": [
+    "黄河新村",
+    "煤建四处",
+    "东阁小区南区",
+    "合群小区",
+    "黄河小区",
+    "民和园",
+    "湖滨片区"
+  ],
+  "evidence_policy": "边户、房龄、结构、容积率、公园等只能作为线索；安静和隔音不能在没有楼栋级空间关系或现场证据时标为已验证。",
+  "output": "优先给出5-10套真实贝壳候选，按是否值得现场看房排序，不为凑数放宽安静要求。"
+}
