@@ -1,0 +1,12 @@
+{
+  "total_budget_wan": 60,
+  "purchase_target_wan": [25, 30],
+  "purchase_soft_max_wan": 35,
+  "transaction_cost_reserve_wan": [1, 2],
+  "demolition_basic_renovation_wan": [8, 12],
+  "kitchen_bath_plumbing_windows_wan": [4, 6],
+  "acoustic_upgrade_wan": [3, 6],
+  "furniture_appliances_wan": [3, 5],
+  "liquidity_reserve_wan": 5,
+  "principle": "不为豪装耗尽预算；优先把钱花在门窗、入户门/卧室门、墙顶隔声、排水、空调/新风及真正影响安静与独居体验的项目上。"
+}
